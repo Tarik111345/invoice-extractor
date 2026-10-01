@@ -48,6 +48,10 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 - Svaka verzija ide na svoju granu: `feature/v1-hello`, `feature/v2-structured-output`, itd.
 - Kratke, jasne commit poruke na engleskom (npr. `Add invoice JSON schema`).
 
+## Jezik u projektu
+- **Sve u projektu je na engleskom:** kod, nazivi varijabli i fajlova (npr. `invoices/invoice1.png`), promptovi, komentari, commit poruke.
+- Testne fakture mogu biti na engleskom, ali zadržavaju BiH polja (JIB, PDV 17%, KM).
+
 ## Sigurnost
 - **Nikad ne ispisuj, ne čitaj naglas i ne commitaj sadržaj `.env`.**
 - `.env`, `.venv/` i `invoices/` moraju biti u `.gitignore`.
@@ -59,7 +63,7 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 - [x] `.env` s `GEMINI_API_KEY`
 - [x] Provjeriti `git status` (`.env` i `.venv` se ne smiju pojaviti), commitati setup na `main`
 - [x] Napraviti granu `feature/v1-hello`
-- [ ] **Lekcija 1:** `hello.py`, prvi poziv Gemini API-ja + mini zadaci (system prompt, tokeni, `max_output_tokens`)
+- [x] **Lekcija 1:** `hello.py`, prvi poziv Gemini API-ja + mini zadaci (system prompt, tokeni, `max_output_tokens`)
 - [ ] v1: slanje slike fakture
 
 (Ažuriraj ovu listu kad završimo neki korak.)
