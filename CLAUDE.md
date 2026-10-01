@@ -23,7 +23,8 @@ Ovo je najbitnije pravilo u ovom projektu.
 
 ## Stack
 - **Python 3.14**, virtualno okruženje u `.venv`
-- **Google Gemini API** (besplatni nivo), paket `google-genai`, model `gemini-2.5-flash`
+- **Google Gemini API** (besplatni nivo), paket `google-genai`, model `gemini-3.5-flash-lite`
+  - `gemini-2.5-flash` vraća 404 (zatvoren za nove korisnike); `gemini-3.7/3.8-flash` su često 503 (preopterećeni). Dostupne modele izlistaj s `client.models.list()`.
 - Ključ je u `.env` kao `GEMINI_API_KEY`, učitava se s `python-dotenv`
 - Terminal: **PowerShell** na Windowsu
   - `python` radi samo kad je venv aktivan. Bez venv-a koristi se `py`.
@@ -47,6 +48,10 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 - Svaka verzija ide na svoju granu: `feature/v1-hello`, `feature/v2-structured-output`, itd.
 - Kratke, jasne commit poruke na engleskom (npr. `Add invoice JSON schema`).
 
+## Jezik u projektu
+- **Sve u projektu je na engleskom:** kod, nazivi varijabli i fajlova (npr. `invoices/invoice1.png`), promptovi, komentari, commit poruke.
+- Testne fakture mogu biti na engleskom, ali zadržavaju BiH polja (JIB, PDV 17%, KM).
+
 ## Sigurnost
 - **Nikad ne ispisuj, ne čitaj naglas i ne commitaj sadržaj `.env`.**
 - `.env`, `.venv/` i `invoices/` moraju biti u `.gitignore`.
@@ -56,9 +61,9 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 - [x] GitHub repo napravljen i kloniran u `D:\projects\invoice-extractor`
 - [x] venv napravljen, `google-genai` i `python-dotenv` instalirani, `requirements.txt` napravljen
 - [x] `.env` s `GEMINI_API_KEY`
-- [ ] Provjeriti `git status` (`.env` i `.venv` se ne smiju pojaviti), commitati setup na `main`
-- [ ] Napraviti granu `feature/v1-hello`
-- [ ] **Lekcija 1:** `hello.py`, prvi poziv Gemini API-ja + mini zadaci (system prompt, tokeni, `max_output_tokens`)
+- [x] Provjeriti `git status` (`.env` i `.venv` se ne smiju pojaviti), commitati setup na `main`
+- [x] Napraviti granu `feature/v1-hello`
+- [x] **Lekcija 1:** `hello.py`, prvi poziv Gemini API-ja + mini zadaci (system prompt, tokeni, `max_output_tokens`)
 - [ ] v1: slanje slike fakture
 
 (Ažuriraj ovu listu kad završimo neki korak.)
