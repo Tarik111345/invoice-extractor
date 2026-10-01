@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Invoice Extractor: real/sample invoices never go to git
+invoices/
