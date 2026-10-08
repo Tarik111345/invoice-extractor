@@ -64,6 +64,10 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 - [x] Provjeriti `git status` (`.env` i `.venv` se ne smiju pojaviti), commitati setup na `main`
 - [x] Napraviti granu `feature/v1-hello`
 - [x] **Lekcija 1:** `hello.py`, prvi poziv Gemini API-ja + mini zadaci (system prompt, tokeni, `max_output_tokens`)
-- [ ] v1: slanje slike fakture
+- [x] v1: slanje slike fakture (PR #1 mergean u `main`)
+- [x] Napraviti granu `feature/v2-structured-output`
+- [x] v2: Pydantic šema fakture (`schema.py`)
+- [ ] v2: Gemini vraća JSON po šemi
+- [ ] v2: validacije (JIB 13 cifara, zbir stavki, PDV 17%, total, datum)
 
 (Ažuriraj ovu listu kad završimo neki korak.)
