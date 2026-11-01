@@ -54,6 +54,21 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 - `main` uvijek mora raditi.
 - Svaka verzija ide na svoju granu: `feature/v1-hello`, `feature/v2-structured-output`, itd.
 - Kratke, jasne commit poruke na engleskom (npr. `Add invoice JSON schema`).
+- **Ti pratiš grane:** na početku sesije i kad se nešto promijeni, provjeri `git status` / `git branch -vv`, ažuriraj tabelu ispod i reci mi kad je vrijeme za commit, push, PR ili merge.
+
+### Workflow jedne verzije
+1. `git checkout main` → `git pull` → `git checkout -b feature/vX-...`
+2. Mali commitovi: jedna logička promjena = jedan commit. Push poslije svakog commita.
+3. Kad je **cijela verzija gotova i radi**: PR na GitHubu (`base: main` ← `compare: feature/vX-...`), pregled u **Files changed**, merge s **Create a merge commit**.
+4. Lokalno: `git checkout main` → `git pull`.
+5. Stare grane ostaju (moja odluka, projekat za učenje).
+
+### Grane
+| Grana | Stanje | Sadržaj |
+|---|---|---|
+| `main` | stabilan | setup + v1 |
+| `feature/v1-hello` | ✅ mergeana (PR #1) | prvi API poziv, čitanje slike |
+| `feature/v2-structured-output` | 🔄 aktivna, pushana | `schema.py`; slijedi `extract.py` i validacije, pa PR #2 |
 
 ## Jezik u projektu
 - **Sve u projektu je na engleskom:** kod, nazivi varijabli i fajlova (npr. `invoices/invoice1.png`), promptovi, komentari, commit poruke.
