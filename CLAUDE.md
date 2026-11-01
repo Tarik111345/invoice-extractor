@@ -89,7 +89,7 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 - [x] v1: slanje slike fakture (PR #1 mergean u `main`)
 - [x] Napraviti granu `feature/v2-structured-output`
 - [x] v2: Pydantic šema fakture (`schema.py`)
-- [ ] v2: Gemini vraća JSON po šemi
+- [x] v2: Gemini vraća JSON po šemi (`extract.py`; JIB i dalje dolazi s 12 cifara)
 - [ ] v2: validacije (JIB 13 cifara, zbir stavki, PDV 17%, total, datum)
 
 (Ažuriraj ovu listu kad završimo neki korak.)
