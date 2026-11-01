@@ -68,7 +68,7 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 |---|---|---|
 | `main` | stabilan | setup + v1 |
 | `feature/v1-hello` | ✅ mergeana (PR #1) | prvi API poziv, čitanje slike |
-| `feature/v2-structured-output` | 🔄 aktivna, pushana | `schema.py`; slijedi `extract.py` i validacije, pa PR #2 |
+| `feature/v2-structured-output` | 🔄 gotova, čeka PR #2 | `schema.py`, `extract.py`, `validation.py` |
 
 ## Jezik u projektu
 - **Sve u projektu je na engleskom:** kod, nazivi varijabli i fajlova (npr. `invoices/invoice1.png`), promptovi, komentari, commit poruke.
@@ -90,6 +90,8 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 - [x] Napraviti granu `feature/v2-structured-output`
 - [x] v2: Pydantic šema fakture (`schema.py`)
 - [x] v2: Gemini vraća JSON po šemi (`extract.py`; JIB i dalje dolazi s 12 cifara)
-- [ ] v2: validacije (JIB 13 cifara, zbir stavki, PDV 17%, total, datum)
+- [x] v2: validacije (`validation.py`: JIB 13 cifara, zbir stavki, PDV 17%, total, datum); hvata JIB grešku s invoice1.png
+- [ ] v2: PR #2 i merge u `main`
+- [ ] Kasnije (ideja): `warnings` (🟡) odvojeno od `errors` (🔴), npr. PDV 0% za izvoz; `mime_type` iz ekstenzije u `extract.py`
 
 (Ažuriraj ovu listu kad završimo neki korak.)
