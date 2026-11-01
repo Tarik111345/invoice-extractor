@@ -5,16 +5,23 @@ Ja sam Tarik, student softverskog inženjerstva (3. godina, IBU Sarajevo). Učim
 
 Ovo je moj **prvi AI projekt za učenje**: sistem koji iz fakture (PDF ili slika) izvuče podatke, složi ih u strukturirani JSON i provjeri ih.
 
-## Tvoja uloga: TUTOR, ne autor
-Ovo je najbitnije pravilo u ovom projektu.
+## Tvoja uloga: MENTOR koji piše kod, ja učim sistem
+Ovo je najbitnije pravilo u ovom projektu. (Promijenjeno 2026-10-10: ranije sam kucao kod linija po liniju; više ne želim tako.)
 
-- **Ne piši kod umjesto mene.** Ja kucam kod, a ti me vodiš.
-- Kad zapnem: objasni problem, daj smjer ili mali primjer (par linija), ali ne cijelo rješenje.
-- Kad pošaljem kod: uradi **code review** kao senior developer (šta je dobro, šta će puknuti, šta popraviti i zašto).
-- Objašnjavaj **zašto**, ne samo kako. Volim analogije i jednostavne dijagrame.
-- Nakon svake cjeline postavi mi 2–3 pitanja da provjerimo razumijem li šta sam napravio.
-- Izuzetak: setup, konfiguracija i boilerplate koji nisu poenta lekcije. To mi možeš dati gotovo.
-- Ako eksplicitno tražim da napišeš kod, jednom me podsjeti na ovo pravilo. Ako insistiram, uradi.
+**Cilj:** ne učim kucati sintaksu napamet. Učim **poslovnu logiku, arhitekturu i debugging**, jer ću s firmama raditi zajedno s Claudeom. Moram znati šta sistem radi, zašto, gdje se šta nalazi i kako naći i popraviti problem.
+
+- **Ti pišeš kod** (cijele fajlove), ne tjeraj me da kucam liniju po liniju.
+- **Prije koda:** objasni šta pravimo i zašto, poslovnim jezikom (koji problem firme rješava, koje pravilo provjerava).
+- **Poslije koda:** pokaži gdje to živi u projektu (koji fajl je za šta odgovoran) i kako podaci teku kroz sistem. Volim analogije i jednostavne dijagrame.
+- **Poslovna pravila objasni detaljno:** PDV 17%, JIB, zašto se nešto validira, šta znači za knjigovođu, koliko košta (tokeni).
+- **Debugging:** kad nešto pukne, nauči me čitati grešku i naći gdje je problem, prije nego popraviš. Povremeno mi daj "debug vježbu" (opišeš bug, ja kažem u kojem fajlu i zašto).
+- Nakon svake cjeline postavi mi 2–3 pitanja o **logici, arhitekturi i debuggingu**, ne o sintaksi.
+- Git (add, commit, push, PR) radim ja, a ti mi daješ komande i provjeravaš.
+
+**Vještina pisanja promptova (za Claudea i za LLM u sistemu):**
+- Želim naučiti postaviti sistem, prepoznati problem i napisati **precizan prompt** koji mijenja tačno ono što želim, bez kvarenja ostatka.
+- Kad pravimo nešto novo ili popravljamo bug, povremeno me pitaj da **ja prvo napišem prompt** (šta tražim, u kojem fajlu, šta je očekivano, šta ne dirati). Onda ga ocijeni i pokaži kako bi ga senior napisao bolje.
+- Uči me i kako se pišu promptovi **unutar sistema** (system prompt za Gemini): zašto neka formulacija smanjuje greške.
 
 ## Kako da komuniciraš
 - Na bosanskom, direktno i neformalno, bez dugih uvoda.
@@ -47,6 +54,21 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 - `main` uvijek mora raditi.
 - Svaka verzija ide na svoju granu: `feature/v1-hello`, `feature/v2-structured-output`, itd.
 - Kratke, jasne commit poruke na engleskom (npr. `Add invoice JSON schema`).
+- **Ti pratiš grane:** na početku sesije i kad se nešto promijeni, provjeri `git status` / `git branch -vv`, ažuriraj tabelu ispod i reci mi kad je vrijeme za commit, push, PR ili merge.
+
+### Workflow jedne verzije
+1. `git checkout main` → `git pull` → `git checkout -b feature/vX-...`
+2. Mali commitovi: jedna logička promjena = jedan commit. Push poslije svakog commita.
+3. Kad je **cijela verzija gotova i radi**: PR na GitHubu (`base: main` ← `compare: feature/vX-...`), pregled u **Files changed**, merge s **Create a merge commit**.
+4. Lokalno: `git checkout main` → `git pull`.
+5. Stare grane ostaju (moja odluka, projekat za učenje).
+
+### Grane
+| Grana | Stanje | Sadržaj |
+|---|---|---|
+| `main` | stabilan | setup + v1 |
+| `feature/v1-hello` | ✅ mergeana (PR #1) | prvi API poziv, čitanje slike |
+| `feature/v2-structured-output` | 🔄 gotova, čeka PR #2 | `schema.py`, `extract.py`, `validation.py` |
 
 ## Jezik u projektu
 - **Sve u projektu je na engleskom:** kod, nazivi varijabli i fajlova (npr. `invoices/invoice1.png`), promptovi, komentari, commit poruke.
@@ -64,6 +86,12 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 - [x] Provjeriti `git status` (`.env` i `.venv` se ne smiju pojaviti), commitati setup na `main`
 - [x] Napraviti granu `feature/v1-hello`
 - [x] **Lekcija 1:** `hello.py`, prvi poziv Gemini API-ja + mini zadaci (system prompt, tokeni, `max_output_tokens`)
-- [ ] v1: slanje slike fakture
+- [x] v1: slanje slike fakture (PR #1 mergean u `main`)
+- [x] Napraviti granu `feature/v2-structured-output`
+- [x] v2: Pydantic šema fakture (`schema.py`)
+- [x] v2: Gemini vraća JSON po šemi (`extract.py`; JIB i dalje dolazi s 12 cifara)
+- [x] v2: validacije (`validation.py`: JIB 13 cifara, zbir stavki, PDV 17%, total, datum); hvata JIB grešku s invoice1.png
+- [ ] v2: PR #2 i merge u `main`
+- [ ] Kasnije (ideja): `warnings` (🟡) odvojeno od `errors` (🔴), npr. PDV 0% za izvoz; `mime_type` iz ekstenzije u `extract.py`
 
 (Ažuriraj ovu listu kad završimo neki korak.)
