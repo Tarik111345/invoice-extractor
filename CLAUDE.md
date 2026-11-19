@@ -69,7 +69,8 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 | `main` | stabilan | setup + v1 + v2 |
 | `feature/v1-hello` | ✅ mergeana (PR #1) | prvi API poziv, čitanje slike |
 | `feature/v2-structured-output` | ✅ mergeana (PR #2) | `schema.py`, `extract.py`, `validation.py` |
-| `feature/v3-eval` | 🔄 gotova, čeka PR #3 | `generate_invoices.py`, `eval.py` |
+| `feature/v3-eval` | ✅ mergeana (PR #3) | `generate_invoices.py`, `eval.py` |
+| `feature/v4-app` | 🔄 aktivna | FastAPI + PostgreSQL + red čekanja + review ekran |
 
 ## Jezik u projektu
 - **Sve u projektu je na engleskom:** kod, nazivi varijabli i fajlova (npr. `invoices/invoice1.png`), promptovi, komentari, commit poruke.
@@ -101,7 +102,14 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
   - "teški" JIB (11 nula) 3/21 tačno, normalni JIB 15/15; greška je uvijek ista: izgubi jednu nulu
   - validacija: 13/13 grešaka uhvaćeno, 0 tihih grešaka, 0 lažnih alarma
   - slijepa tačka: pogrešno ime firme validacija ne može uhvatiti (nema pravila)
-- [ ] v3: PR #3 i merge u `main`
+- [x] v3: PR #3 i merge u `main`
+- [x] Napraviti granu `feature/v4-app` (lokalno je PostgreSQL 13 servis pokrenut, Docker instaliran)
+- [ ] v4.1: FastAPI kostur (`app.py`), server radi, `/docs` se otvara
+- [ ] v4.2: PostgreSQL baza i tabela `invoices` (status, podaci, greške)
+- [ ] v4.3: upload fakture → spremi u bazu sa statusom `pending`
+- [ ] v4.4: worker (red čekanja): uzima `pending`, poziva extract + validation, retry na 503
+- [ ] v4.5: review ekran: lista faktura, polja zeleno/crveno, ispravka i "Potvrdi"
+- [ ] v4.6: export potvrđenih faktura u CSV (nivo 0 integracije)
 - [ ] Kasnije (eksperiment): popraviti JIB promptom ili jačim modelom i izmjeriti s `eval.py`
 - [ ] Kasnije (ideja): `warnings` (🟡) odvojeno od `errors` (🔴), npr. PDV 0% za izvoz; `mime_type` iz ekstenzije u `extract.py`
 
