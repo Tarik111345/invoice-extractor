@@ -104,7 +104,7 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
   - slijepa tačka: pogrešno ime firme validacija ne može uhvatiti (nema pravila)
 - [x] v3: PR #3 i merge u `main`
 - [x] Napraviti granu `feature/v4-app` (lokalno je PostgreSQL 13 servis pokrenut, Docker instaliran)
-- [ ] v4.1: FastAPI kostur (`app.py`), server radi, `/docs` se otvara
+- [x] v4.1: FastAPI kostur (`app.py`), server radi, `/docs` se otvara (pokretanje: `uvicorn app:app --reload`)
 - [ ] v4.2: PostgreSQL baza i tabela `invoices` (status, podaci, greške)
 - [ ] v4.3: upload fakture → spremi u bazu sa statusom `pending`
 - [ ] v4.4: worker (red čekanja): uzima `pending`, poziva extract + validation, retry na 503
