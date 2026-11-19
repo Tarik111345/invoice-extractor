@@ -69,7 +69,7 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 | `main` | stabilan | setup + v1 + v2 |
 | `feature/v1-hello` | ✅ mergeana (PR #1) | prvi API poziv, čitanje slike |
 | `feature/v2-structured-output` | ✅ mergeana (PR #2) | `schema.py`, `extract.py`, `validation.py` |
-| `feature/v3-eval` | 🔄 aktivna | eval: testne fakture s tačnim odgovorima + mjerenje tačnosti |
+| `feature/v3-eval` | 🔄 gotova, čeka PR #3 | `generate_invoices.py`, `eval.py` |
 
 ## Jezik u projektu
 - **Sve u projektu je na engleskom:** kod, nazivi varijabli i fajlova (npr. `invoices/invoice1.png`), promptovi, komentari, commit poruke.
@@ -94,9 +94,15 @@ Namjerno NE radimo (za sada): email ingestion, klasifikaciju na konto / RAG, exp
 - [x] v2: validacije (`validation.py`: JIB 13 cifara, zbir stavki, PDV 17%, total, datum); hvata JIB grešku s invoice1.png
 - [x] v2: PR #2 i merge u `main`
 - [x] Napraviti granu `feature/v3-eval`
-- [ ] v3: generator testnih faktura + tačni odgovori (`generate_invoices.py`)
-- [ ] v3: `eval.py` mjeri tačnost po polju
-- [ ] v3: analiza rezultata (koja polja su najslabija i zašto)
+- [x] v3: generator testnih faktura + tačni odgovori (`generate_invoices.py`, 20 faktura, SEED=42)
+- [x] v3: `eval.py` mjeri tačnost po polju + koliko grešaka uhvati validacija
+- [x] v3: analiza rezultata (2026-11-05, `gemini-3.5-flash-lite`, 18/20 faktura, 2 pala na 503):
+  - sva polja 100% osim JIB-a: `seller.jib` 39%, `buyer.jib` 61%
+  - "teški" JIB (11 nula) 3/21 tačno, normalni JIB 15/15; greška je uvijek ista: izgubi jednu nulu
+  - validacija: 13/13 grešaka uhvaćeno, 0 tihih grešaka, 0 lažnih alarma
+  - slijepa tačka: pogrešno ime firme validacija ne može uhvatiti (nema pravila)
+- [ ] v3: PR #3 i merge u `main`
+- [ ] Kasnije (eksperiment): popraviti JIB promptom ili jačim modelom i izmjeriti s `eval.py`
 - [ ] Kasnije (ideja): `warnings` (🟡) odvojeno od `errors` (🔴), npr. PDV 0% za izvoz; `mime_type` iz ekstenzije u `extract.py`
 
 (Ažuriraj ovu listu kad završimo neki korak.)
